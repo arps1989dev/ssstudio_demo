@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Photo:</strong>
+  <%= @selected_photo.photo_id %>
+</p>
+
+<%= link_to 'Edit', edit_selected_photo_path(@selected_photo) %> |
+<%= link_to 'Back', selected_photos_path %>

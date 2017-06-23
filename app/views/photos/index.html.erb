@@ -1,0 +1,81 @@
+<%= link_to 'New Photo', new_photo_path %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Photos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <!-- <th>Title</th>
+      <th>Category</th>
+      <th>Album</th> -->
+      <th>Photo</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @photos.each do |photo| %>
+      <tr>
+        <!-- <td><%#= photo.title %></td>
+        <td><%#= photo.category.title %></td>
+        <td><%#= photo.album.title %></td> -->
+        <td ><%= link_to image_tag(photo.photo_image.url(:medium), style:"width:100px; height:100px;" ), photo.photo_image.url(:medium), target: '_blank' %></td>
+        <td class="photo_checkboxes" ><%= check_box '', photo.id ,class: 'photo_check' ,id: photo.id.to_s %></td>
+        <!-- <td><%#= link_to 'Show', photo %></td>
+        <td><%#= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<td><%= link_to 'submit', selected_photos_path, class: 'submit_photo' %></td>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    var check
+    var check_ids = []
+
+    $(document).on('click', '.photo_check', function(e){
+
+       check = $(this).is(':checked')
+
+        if(check == true){
+          check_id = check_ids.push($(this)[0].id)
+          $(check).prop('checked', true)
+        }
+        else{
+          // debugger;
+            var remove_ids = check_ids.indexOf($(this)[0].id);
+            check_ids.splice(remove_ids,1);
+            console.log(remove_ids)
+          $(check).prop('checked', false)
+          // check_id = check_ids.splice($(this)[0].id,1)
+
+        }
+
+        console.log(check)
+        console.log(check_ids)
+    })
+    $(document).on('click', '.submit_photo', function(e){
+         
+      $.ajax({
+        type: 'POST',
+        url: '/selected_photos',
+        data: {selected_photo: {photo_id: check_ids}},
+       
+        beforeSend: function() {
+        },
+      }).done(function(){
+
+      })
+      .fail(function() {
+        // body...
+      })
+
+    })
+  });
+</script>
+

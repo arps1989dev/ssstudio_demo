@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Watermark Image:</strong>
+  <%= link_to image_tag(@water_mark.watermark_image.url(:medium)), @water_mark.watermark_image.url(:medium), target: '_blank' %>
+</p>
+<%= link_to 'Edit', edit_water_mark_path(@water_mark) %> |
+<%= link_to 'Back', water_marks_path %>

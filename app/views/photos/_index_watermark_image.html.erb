@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Water Marks</h1>
+
+<table>
+  <thead>
+      <th>Watermark Photo</th>
+  </thead>
+
+  <tbody>
+    <% @water =  WaterMark.all %>
+    <% @water.each do |water_mark| %>
+      <!-- <tr> -->
+        <td class ='water_border'><%= link_to image_tag(water_mark.watermark_image.url(:medium)), water_mark.watermark_image.url(:medium), target: '_blank' %>
+        </td>
+        <td><%= check_box '', water_mark.id ,class: "watermark_table", id: 'water_mark_'+water_mark.id.to_s %></td>
+        <!-- <td><%#= link_to 'Show', water_mark %></td>
+        <td><%#= link_to 'Edit', edit_water_mark_path(water_mark) %></td>
+        <td><%#= link_to 'Destroy', water_mark, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+      <!-- </tr> -->
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'New Water mark', new_water_mark_path %>

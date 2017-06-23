@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Selected Photos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Photo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @selected_photos.each do |selected_photo| %>
+      <tr>
+        <td><%= selected_photo.photo_id %></td>
+         <td ><%= link_to image_tag(selected_photo.photo.photo_image.url(:medium), style:"width:100px; height:100px;" ), selected_photo.photo.photo_image.url(:medium), target: '_blank' %></td>
+        <td><%= link_to 'Show', selected_photo %></td>
+        <td><%= link_to 'Edit', edit_selected_photo_path(selected_photo) %></td>
+        <td><%= link_to 'Destroy', selected_photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'New Selected photo', photos_path %>

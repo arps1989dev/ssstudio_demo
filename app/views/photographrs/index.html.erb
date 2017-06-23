@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Photographrs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Fname</th>
+      <th>Lname</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>Birthdate</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @photographrs.each do |photographr| %>
+      <tr>
+        <td><%= photographr.email %></td>
+        <td><%= photographr.fname %></td>
+        <td><%= photographr.lname %></td>
+        <td><%= photographr.phone %></td>
+        <td><%= photographr.address %></td>
+        <td><%= photographr.city %></td>
+        <td><%= photographr.state %></td>
+        <td><%= photographr.country %></td>
+        <td><%= photographr.birthdate %></td>
+        <td><%= link_to 'Show', photographr %></td>
+        <td><%= link_to 'Edit', edit_photographr_path(photographr) %></td>
+        <td><%= link_to 'Destroy', photographr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Photographr', new_photographr_path %>
